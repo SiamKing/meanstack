@@ -42,4 +42,25 @@ router.get('/users', (req, res) => {
     });
 });
 
+// Get Single User
+router.get('user/:id', (req, res, next) => {
+  connection(db => {
+    db.collection('users')
+      .find(id)
+      .then(user => {
+        response.data = user;
+        res.json(response)
+      })
+      .catch(err => {
+        sendError(err, res)
+      })
+  })
+})
+
+router.create('/users', (req, res) => {
+  connection(db => {
+    db.collection('users')
+  })
+})
+
 module.exports = router;
